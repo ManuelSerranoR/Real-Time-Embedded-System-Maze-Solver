@@ -24,6 +24,7 @@ int main (void)
 	const float min_dst = .2; 
 	float num_rt_turns = 0;
 	const max_rt = 0; // maximum number of right turns allowed in a row
+	int init_start = 1
 
 	
 	/*
@@ -36,6 +37,13 @@ int main (void)
 	*/
 	while(1)
 	{
+		if (init_start)
+		{
+			while(ft_dst>min_dst)
+			{
+				go_fwd();  // This is for the initial drop into the maze
+			}
+		}
 		while(((ft_dst >= max_dst) && (rt_dst >= max_dst)) && (lt_dst >= max_dst))
 		{
 			hit_brakes(); // This is for when we have left the maze
