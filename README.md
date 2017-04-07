@@ -3,3 +3,5 @@ This repository contains files written in C for the development of a maze solver
 
 Pending:
 - Modify algorithm to first run until it finds a wall. Then proceed with the algorithm itself.
+- Include PWM.
+- Input capture.
