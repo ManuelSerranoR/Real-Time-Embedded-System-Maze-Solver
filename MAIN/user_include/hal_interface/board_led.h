@@ -6,9 +6,7 @@
 typedef enum {
 	LED3,
 	LED4,
-	LED5,
 	LED6,
-	LED7,
 	LED8,
 	LED9,
 	LED10
