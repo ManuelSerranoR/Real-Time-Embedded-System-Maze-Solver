@@ -1,6 +1,6 @@
 /*
   This is the main user software application
-  In this case, we have below the code necessary to use PWM with LEDs on an STM32 F3 Discovery PCB.
+  In this case, we have below the code necessary to do wall-following using Ultrasonic sensor
 
   (c) Naman Patel, 2017
  */
