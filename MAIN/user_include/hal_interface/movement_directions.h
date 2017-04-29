@@ -7,7 +7,8 @@ typedef enum {
 	LEFT,
 	RIGHT,
 	STOP,
-	STRAIGHT_RIGHT
+	STRAIGHT_RIGHT,
+	STRAIGHT_LEFT
 } movement_type;
 
 void move(movement_type mov, float duty);

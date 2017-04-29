@@ -74,6 +74,10 @@ int main()
       {
         move(STRAIGHT_RIGHT, DUTY);
       }
+      else if(distance_left>=left_threshold && distance_right<right_threshold)
+      {
+        move(STRAIGHT_LEFT, DUTY);
+      }
       else
         move(STRAIGHT,DUTY);
     }

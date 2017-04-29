@@ -40,6 +40,15 @@ void move(movement_type mov, float duty){
   			set_pwm(PD7, 0.0f);
 			break;
 
+		case STRAIGHT_LEFT:
+			board_led_all_off();
+			board_led_on(LED6);
+			set_pwm(PD3, 0.0f);
+  			set_pwm(PD4, 0.0f);
+  			set_pwm(PD6, 0.0f);
+  			set_pwm(PD7, duty);
+			break;
+
 		case STOP:
 			board_led_all_off();
 			board_led_on(LED3);
