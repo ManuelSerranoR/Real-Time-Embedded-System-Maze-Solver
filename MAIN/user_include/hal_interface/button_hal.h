@@ -10,4 +10,8 @@ typedef enum {
 void button_init(void);
 int button_pressed(button b);
 
+extern volatile int button_pressed_flag; 	// Holds whether or not a RISING edge has been detected
+											// @wWarning: Access shared between EXTI0 ISR and user code!!
+
+
 #endif

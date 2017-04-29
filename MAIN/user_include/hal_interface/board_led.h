@@ -16,6 +16,7 @@ void board_led_init(void);
 void board_led_on(led led_id);
 void board_led_off(led led_id);
 void board_led_all_on();
+void board_led_all_off();
 //void board_led_toggle(led led_id);
 
 #endif

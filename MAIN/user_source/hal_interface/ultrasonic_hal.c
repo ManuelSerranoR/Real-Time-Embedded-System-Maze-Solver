@@ -1,16 +1,5 @@
 #include "ultrasonic_hal.h"
 
-static volatile int ultrasonic_echo0_flag;  // Holds whether or not a RISING edge has been detected
-static volatile int ultrasonic_echo1_flag;  // Holds whether or not a RISING edge has been detected
-static volatile int ultrasonic_echo2_flag;  // Holds whether or not a RISING edge has been detected
-
-static volatile int trigger_flag;  // Holds whether or not a RISING edge has been detected
-
-TIM_HandleTypeDef tim3ch1_init;
-TIM_HandleTypeDef tim3ch2_init;
-TIM_HandleTypeDef tim3ch3_init;
-TIM_HandleTypeDef tim4handle;
-
 void timer3ch_start(ultrasonic num)
 {
 	//__HAL_RCC_TIM3_CLK_ENABLE();
@@ -173,7 +162,7 @@ static void ultrasonic_gpio_init(ultrasonic num)
 			GPIO_InitStruct.Pin = GPIO_PIN_11;
 			GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
 			GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-			GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+			GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
 
 			HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
 			break;
@@ -190,7 +179,7 @@ static void ultrasonic_gpio_init(ultrasonic num)
 			GPIO_InitStruct.Pin = GPIO_PIN_6;
 			GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
 			GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-			GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+			GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
 
 			__HAL_RCC_GPIOF_CLK_ENABLE(); // Enable clock to GPIOF
 
@@ -209,7 +198,7 @@ static void ultrasonic_gpio_init(ultrasonic num)
 			GPIO_InitStruct.Pin = GPIO_PIN_9;
 			GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
 			GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-			GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+			GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
 
 			__HAL_RCC_GPIOF_CLK_ENABLE(); // Enable clock to GPIOA
 
@@ -241,6 +230,13 @@ void ultrasonic_init(ultrasonic num)
 	break;
 	}
 
+}
+
+void ultrasonic_all_init()
+{
+  ultrasonic_init(ultrasonic_right);
+  ultrasonic_init(ultrasonic_front);
+  ultrasonic_init(ultrasonic_left);
 }
 
 void ultrasonic_trigger(ultrasonic num)
@@ -317,9 +313,11 @@ int ultrasonic_distance(ultrasonic num)
  */
 
 /* Handle PE11 interrupt */
+/* Handle PE11 interrupt */
+/*
 void EXTI15_10_IRQHandler(void) {
 
-    /* Make sure that interrupt flag is set */
+    //Make sure that interrupt flag is set
 
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11); 	// This function will first clear the IRQ on EXTI11
 											// It will then call the HAL_GPIO_EXTI_Callback below
@@ -348,16 +346,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
   trigger_flag=1;
 }
 
-void EXTI0_IRQHandler(void)
-{
-	//printf("Detected\r\n");
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0); 	// This function will first clear the IRQ on EXTI0
-											// It will then call the HAL_GPIO_EXTI_Callback below
-}
-/*
-	User code section of the EXTI IRQ, called from HAL_GPIO_EXTI_IRQHandler
-	after interrupt flags are cleared:
- */
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
@@ -368,14 +356,12 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		{
 			//start timer
 			timer3ch_start(ultrasonic_front);
-			ultrasonic_echo1_flag=1;
 		}
-		else if(ultrasonic_echo1_flag==1 && HAL_GPIO_ReadPin(GPIOF, GPIO_PIN_6) != GPIO_PIN_SET)
+		else
 		{
 			//end timer
 			timerValue2 = gettimervalue(ultrasonic_front);
 			timer3ch_stop(ultrasonic_front);
-			ultrasonic_echo1_flag=0;
 			readflag1=1;
 		}
 	}
@@ -386,15 +372,13 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 																// RISING edge we captured
 		{
 			//start timer
-			timer3ch_start(ultrasonic_right);
-			ultrasonic_echo0_flag=1;	
+			timer3ch_start(ultrasonic_right);	
 		}
-		else if(ultrasonic_echo0_flag==1 && HAL_GPIO_ReadPin(GPIOF, GPIO_PIN_11) != GPIO_PIN_SET)
+		else
 		{
 			//end timer
 			timerValue1 = gettimervalue(ultrasonic_right);
 			timer3ch_stop(ultrasonic_right);
-			ultrasonic_echo0_flag=0;
 			readflag0=1;
 		}
 	}
@@ -406,17 +390,15 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		{
 			//start timer
 			timer3ch_start(ultrasonic_left);
-			ultrasonic_echo2_flag=1;
 		}
-		else if(ultrasonic_echo2_flag==1 && HAL_GPIO_ReadPin(GPIOF, GPIO_PIN_9) != GPIO_PIN_SET)
+		else
 		{
 			//end timer
 			timerValue3 = gettimervalue(ultrasonic_left);
 			timer3ch_stop(ultrasonic_left);
-			ultrasonic_echo2_flag=0;
 			readflag2=1;
 		}
 	}
 	
 	
-}
+}*/

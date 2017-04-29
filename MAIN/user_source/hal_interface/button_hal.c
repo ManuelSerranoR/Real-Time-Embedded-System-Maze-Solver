@@ -1,8 +1,5 @@
 #include "button_hal.h"
 
-static volatile int button_pressed_flag; 	// Holds whether or not a RISING edge has been detected
-											// @wWarning: Access shared between EXTI0 ISR and user code!!
-
 static void button_gpio_init(void)
 {
 	static GPIO_InitTypeDef  GPIO_InitStruct;
@@ -47,27 +44,3 @@ int button_pressed(button b)
 	HAL, which in turn call the user-defined generic EXTI Callback function 
 	defined further below:
  */
-
-void EXTI0_IRQHandler(void)
-{
-	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_0); 	// This function will first clear the IRQ on EXTI0
-											// It will then call the HAL_GPIO_EXTI_Callback below
-}
-
-/*
-	User code section of the EXTI IRQ, called from HAL_GPIO_EXTI_IRQHandler
-	after interrupt flags are cleared:
- */
-
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-	if(GPIO_Pin == GPIO_PIN_0) // This means we're sure we've gotten an EXTI event on pin 0
-	{
-		if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == GPIO_PIN_SET) // If the pin is high now, it must've been a
-																// RISING edge we captured
-																// I.e. the button was PRESSED
-		{
-			button_pressed_flag = 1; // Set the flag since we've detected a button press event
-		}
-	}
-}
