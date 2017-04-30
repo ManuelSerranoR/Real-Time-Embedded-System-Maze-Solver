@@ -57,7 +57,7 @@ int main()
   0   1   0     Take a right
   0   1   1     Go straight (While moving right)
   1   0   0     Take a left
-  1   0   1     Go Straight
+  1   0   1     Go straight (While moving left)
   1   1   0     Take a left
   1   1   1     Go straight
   */
@@ -74,7 +74,7 @@ int main()
       {
         move(STRAIGHT_RIGHT, DUTY);
       }
-      else if(distance_left>=left_threshold && distance_right<right_threshold)
+      else if(distance_left>left_threshold)
       {
         move(STRAIGHT_LEFT, DUTY);
       }
