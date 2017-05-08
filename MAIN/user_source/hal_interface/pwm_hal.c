@@ -10,7 +10,7 @@ void init_pwm(void)
 	
 	tim_init.Init.CounterMode = TIM_COUNTERMODE_UP;
 	tim_init.Init.ClockDivision = TIM_CLOCKDIVISION_DIV4;
-	tim_init.Init.Prescaler = 10;
+	tim_init.Init.Prescaler = 500;
 	tim_init.Init.Period = TIMER_PERIOD_1KHZ;
 	tim_init.Init.AutoReloadPreload = 0;
 

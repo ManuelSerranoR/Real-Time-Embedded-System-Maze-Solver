@@ -10,7 +10,7 @@ volatile int readflag0;
 volatile int readflag1;
 volatile int readflag2;
 
-volatile int trigger_flag;  // Holds whether or not a RISING edge has been detected
+//volatile int trigger_flag;  // Holds whether or not a RISING edge has been detected
 
 TIM_HandleTypeDef tim3ch1_init;
 TIM_HandleTypeDef tim3ch2_init;
@@ -34,12 +34,12 @@ void EXTI9_5_IRQHandler(void)
 											// It will then call the HAL_GPIO_EXTI_Callback below
 }
 
-
+/*
 void TIM4_IRQHandler(void)
 {
  // printf("EXTIDetected\r\n");
   HAL_TIM_IRQHandler(&tim4handle);
-}
+}*/
 
 void EXTI0_IRQHandler(void)
 {
@@ -48,12 +48,12 @@ void EXTI0_IRQHandler(void)
 											// It will then call the HAL_GPIO_EXTI_Callback below
 }
 
-
+/*
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
  //printf("EXTICallbackDetected\r\n");
   trigger_flag=1;
-}
+}*/
 /*
 	User code section of the EXTI IRQ, called from HAL_GPIO_EXTI_IRQHandler
 	after interrupt flags are cleared:

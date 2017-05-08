@@ -16,10 +16,15 @@
 #include "uart.h"
 
 
-#define front_threshold 17
-#define left_threshold  15
-#define right_threshold 15
-#define DUTY 0.5f
+#define front_low_threshold 12
+#define left_low_threshold  12
+#define right_low_threshold 12
+
+#define front_high_threshold 16
+#define left_high_threshold  20
+#define right_high_threshold 20
+
+#define DUTY 0.4f
 
 int main()
 {
@@ -67,30 +72,24 @@ int main()
     distance_right=ultrasonic_distance(ultrasonic_right);
     distance_front=ultrasonic_distance(ultrasonic_front);
     distance_left=ultrasonic_distance(ultrasonic_left);
-
-    if(distance_front>=front_threshold)
+    
+    if(distance_front>=front_high_threshold)
     {
-      if(distance_left<left_threshold && distance_right>=right_threshold)
-      {
+      if(distance_left<left_low_threshold && distance_right>right_high_threshold)
         move(STRAIGHT_RIGHT, DUTY);
-      }
-      else if(distance_left>left_threshold)
-      {
-        move(STRAIGHT_LEFT, DUTY);
-      }
+      else if(distance_left>left_low_threshold && distance_left<left_high_threshold && distance_right>right_high_threshold)
+        move(STRAIGHT_STRAIGHT_LEFT, DUTY);
+      else if(distance_left>left_high_threshold && distance_right>right_high_threshold)
+        move(STRAIGHT_STRAIGHT_LEFT,DUTY);
       else
         move(STRAIGHT,DUTY);
     }
+
     else
     {
-      if(distance_left>=left_threshold)
-      {
-        move(LEFT,DUTY);
-      }
-      else
-      {
-        move(RIGHT,DUTY);
-      }
+        move(RIGHT, DUTY);
+        int z;
+        for(z=0;z<180000;++z);
     }
   }
 

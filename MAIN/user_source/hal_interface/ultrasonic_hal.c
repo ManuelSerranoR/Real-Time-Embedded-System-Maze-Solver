@@ -78,14 +78,15 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
   
   /*##-2- Configure the NVIC for TIMx ########################################*/
   /* Set Interrupt Group Priority */ 
-  /* Set Interrupt Group Priority */ 
+  /* Set Interrupt Group Priority */
+  /* 
   if(htim->Instance==TIM4)
   {
   	HAL_NVIC_SetPriority(TIM4_IRQn, 6, 0);
 
-  	/* Enable the TIMx global Interrupt */
+  	//Enable the TIMx global Interrupt
   	HAL_NVIC_EnableIRQ(TIM4_IRQn);
-  }
+  }*/
 }
 
 void timer_echostart()
@@ -97,7 +98,7 @@ void timer_echostart()
 	tim4handle.Init.CounterMode = TIM_COUNTERMODE_UP;
 	tim4handle.Init.ClockDivision = 0U;
 	tim4handle.Init.Prescaler = 71U;
-	tim4handle.Init.Period = 9U; //23200 max
+	tim4handle.Init.Period = 30U; //23200 max
 	tim4handle.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
 
 	HAL_TIM_Base_Init(&tim4handle);
@@ -106,7 +107,7 @@ void timer_echostart()
 	__HAL_TIM_SET_COUNTER(&tim4handle,0);
 
   	
-	HAL_TIM_Base_Start_IT(&tim4handle);
+	HAL_TIM_Base_Start(&tim4handle);
 
 }
 
@@ -243,33 +244,33 @@ void ultrasonic_trigger(ultrasonic num)
 {
 	if (num==ultrasonic_front)
 	{
-	trigger_flag=0;
+	//trigger_flag=0;
 
 	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_0, GPIO_PIN_SET);
 	timer_echostart();
-	while(trigger_flag==0);
+	while(__HAL_TIM_GET_COUNTER(&tim4handle)<10);
 	timer_echostop();
 	HAL_GPIO_WritePin(GPIOD, GPIO_PIN_0, GPIO_PIN_RESET);
 	}
 
 	if(num== ultrasonic_right)
 	{
-	trigger_flag=0;
+	//trigger_flag=0;
 	
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_10, GPIO_PIN_SET);
 	timer_echostart();
-	while(trigger_flag==0);
+	while(__HAL_TIM_GET_COUNTER(&tim4handle)<10);
 	timer_echostop();
 	HAL_GPIO_WritePin(GPIOE, GPIO_PIN_10, GPIO_PIN_RESET);
 	}
 
 	if(num== ultrasonic_left)
 	{
-	trigger_flag=0;
+	//trigger_flag=0;
 
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
 	timer_echostart();
-	while(trigger_flag==0);
+	while(__HAL_TIM_GET_COUNTER(&tim4handle)<10);
 	timer_echostop();
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_RESET);
 	}
