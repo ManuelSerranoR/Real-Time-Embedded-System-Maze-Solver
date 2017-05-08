@@ -47,7 +47,7 @@ int main()
   ultrasonic_all_init();
 
   /*
-  Left wall following
+  Left wall following 
 
   0 means too close
   1 means too far
@@ -60,6 +60,8 @@ int main()
   1   0   1     Go straight (While moving left)
   1   1   0     Take a left
   1   1   1     Go straight
+  
+  Need special case for 90degree turns
   */
   
   while(1)
