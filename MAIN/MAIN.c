@@ -69,7 +69,25 @@ int main()
     distance_right=ultrasonic_distance(ultrasonic_right);
     distance_front=ultrasonic_distance(ultrasonic_front);
     distance_left=ultrasonic_distance(ultrasonic_left);
-
+    
+    if(distance_left>left_threshold)
+    {
+      move(STRAIGHT_LEFT, DUTY);
+    }
+    else if(distance_front>front_threshold)
+    {
+      move(STRAIGHT,DUTY);
+    }
+    else if(distance_right>right_threshold)
+    {
+      move(STRAIGHT_RIGHT, DUTY);
+    }
+    else
+    {
+      move(STRAIGHT_LEFT, DUTY);
+      move(STRAIGHT_LEFT, DUTY);
+    }
+/*
     if(distance_front>=front_threshold)
     {
       if(distance_left<left_threshold && distance_right>=right_threshold)
@@ -95,6 +113,6 @@ int main()
       }
     }
   }
-
+*/
   return 0;
 }
