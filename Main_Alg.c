@@ -6,6 +6,7 @@
 *       go_fwd()
 *       left_turn()
 *       right_turn()
+*       Back_up is not needed
 */
 
 
@@ -34,6 +35,8 @@ int main (void)
 	*  Turn right if right hand side open
 	*  Turn left if in a corner
 	*  Make sure number of right turns is limited to avoid being stuck on an island
+	*
+	* Must account for turning radius issues
 	*/
 	while(1)
 	{
