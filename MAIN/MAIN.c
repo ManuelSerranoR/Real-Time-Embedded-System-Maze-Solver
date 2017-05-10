@@ -24,6 +24,8 @@
 #define left_high_threshold  20
 #define right_high_threshold 20
 
+#define  tooclose 5
+
 #define DUTY 0.4f
 
 int main()
@@ -83,6 +85,12 @@ int main()
         move(STRAIGHT_STRAIGHT_LEFT,DUTY);
       else
         move(STRAIGHT,DUTY);
+      // For hitting the wall
+      if(distance_right<tooclose)
+        move(STRAIGHT_STRAIGHT_LEFT, DUTY);
+      if(distance_left<tooclose)
+        move(STRAIGHT_Right, DUTY);
+      
     }
 
     else
