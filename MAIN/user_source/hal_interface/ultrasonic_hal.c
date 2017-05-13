@@ -83,7 +83,6 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef *htim)
   if(htim->Instance==TIM4)
   {
   	HAL_NVIC_SetPriority(TIM4_IRQn, 6, 0);
-
   	//Enable the TIMx global Interrupt
   	HAL_NVIC_EnableIRQ(TIM4_IRQn);
   }*/
@@ -137,10 +136,8 @@ int gettimervalue(ultrasonic num)
 Ultrasonic 0	PE10		PE11	Right
 Ultrasonic 1	PA12		PF6		Front
 Ultrasonic 2	PA11		PA13	Left
-
 Ultrasonic 1	PD0		    PF6		Front
 Ultrasonic 2	PB0		    PF9	    Left
-
 Trigger 10us TTL pulse
 Echo Detect TTL us/58=centimeters
 */
@@ -317,14 +314,10 @@ int ultrasonic_distance(ultrasonic num)
 /* Handle PE11 interrupt */
 /*
 void EXTI15_10_IRQHandler(void) {
-
     //Make sure that interrupt flag is set
-
     HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_11); 	// This function will first clear the IRQ on EXTI11
 											// It will then call the HAL_GPIO_EXTI_Callback below
 }
-
-
 void EXTI9_5_IRQHandler(void)
 {
 	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6); 	// This function will first clear the IRQ on EXTI6
@@ -332,22 +325,16 @@ void EXTI9_5_IRQHandler(void)
 	HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_9); 	// This function will first clear the IRQ on EXTI6
 											// It will then call the HAL_GPIO_EXTI_Callback below
 }
-
-
 void TIM4_IRQHandler(void)
 {
  // printf("EXTIDetected\r\n");
   HAL_TIM_IRQHandler(&tim4handle);
 }
-
-
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
  //printf("EXTICallbackDetected\r\n");
   trigger_flag=1;
 }
-
-
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
 	if(GPIO_Pin == GPIO_PIN_6) // This means we're sure we've gotten an EXTI event on pin 0
@@ -366,7 +353,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			readflag1=1;
 		}
 	}
-
 	if(GPIO_Pin == GPIO_PIN_11) // This means we're sure we've gotten an EXTI event on pin 0
 	{
 		if(HAL_GPIO_ReadPin(GPIOE, GPIO_PIN_11) == GPIO_PIN_SET) // If the pin is high now, it must've been a
@@ -383,7 +369,6 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 			readflag0=1;
 		}
 	}
-
 	if(GPIO_Pin == GPIO_PIN_9) // This means we're sure we've gotten an EXTI event on pin 0
 	{
 		if(HAL_GPIO_ReadPin(GPIOF, GPIO_PIN_9) == GPIO_PIN_SET) // If the pin is high now, it must've been a
