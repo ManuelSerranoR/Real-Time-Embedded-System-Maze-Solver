@@ -2,7 +2,7 @@
   This is the main user software application
   In this case, we have below the code necessary to do wall-following using Ultrasonic sensor
 
-  (c) Michael Shamouilian, Naman Patel and Manuel Serrano, 2017
+  (c) Naman Patel and Manuel Serrano, 2017
  */
 
 // C standard include(s):
