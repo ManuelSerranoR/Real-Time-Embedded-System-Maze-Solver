@@ -26,7 +26,7 @@ void move(movement_type mov, float duty){
 			board_led_all_off();
 			board_led_on(LED6);
 			set_pwm(PD3, 0.0f);
-  			set_pwm(PD4, duty);
+  			set_pwm(PD4, (duty)*0.8);
   			set_pwm(PD6, duty);
   			set_pwm(PD7, 0.0f);
 			break;
@@ -37,36 +37,17 @@ void move(movement_type mov, float duty){
 			set_pwm(PD3, 0.0f);
   			set_pwm(PD4, duty);
   			set_pwm(PD6, 0.0f);
-  			set_pwm(PD7, 0.2f);
+  			set_pwm(PD7, duty/2.7);
 			break;
 
 		case STRAIGHT_LEFT:
 			board_led_all_off();
 			board_led_on(LED9);
 			set_pwm(PD3, 0.0f);
-  			set_pwm(PD4, 0.0f);
+  			set_pwm(PD4, duty/3.1);
   			set_pwm(PD6, 0.0f);
   			set_pwm(PD7, duty);
 			break;
-
-		case STRAIGHT_STRAIGHT_LEFT:
-			board_led_all_off();
-			board_led_on(LED4);
-			set_pwm(PD3, 0.0f);
-  			set_pwm(PD4, 0.2f);
-  			set_pwm(PD6, 0.0f);
-  			set_pwm(PD7, duty+0.1f);
-			break;
-
-		case STRAIGHT_STRAIGHT_RIGHT:
-			board_led_all_off();
-			board_led_on(LED4);
-			set_pwm(PD3, 0.0f);
-  			set_pwm(PD4, duty+0.1f);
-  			set_pwm(PD6, 0.0f);
-  			set_pwm(PD7, 0.2f);
-			break;
-
 
 		case STOP:
 			board_led_all_off();
@@ -76,6 +57,5 @@ void move(movement_type mov, float duty){
   			set_pwm(PD6, 0.0f);
   			set_pwm(PD7, 0.0f);
 			break;
-
 	}		
 }
