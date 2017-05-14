@@ -7,6 +7,6 @@ Task Accomplished:
 - [x] Drivers for reading the ultrasonic sensor (Completed by **Naman Patel**)
 - [x] Drivers for reading the encoders (Completed by **Siddharth Arora**)
 - [x] Integration of all drivers (Completed by **Naman Patel**)
-- [x] Main Wall Following Algorithm (Completed by **Manuel Serrano, Naman Patel and Siddharth Arora**)
+- [x] Wall Following Algorithm with bang bang controller(Completed by **Manuel Serrano, Naman Patel and Siddharth Arora**)
 - [ ] Modified wall following algorithm with PID controller
 
