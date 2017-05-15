@@ -17,6 +17,9 @@ The code, as suggested by the TAs, has been divided in accordingly divided in Ha
 - **Button**: located in button_hal.c and button_hal.h, used to get the car running after pressing reset. This way, we can easily test our robot and stop it when neccesary without needing to take the batteries out.
 - **PWM**: located in pwm_hal.c and pwm_hal.h, used to continously regulate the power given to the motors, i.e. speed.
 - **Ultrasonic sensors**: located in ultrasonic_hal.c and ultrasonic_hal.h, used to capture the distance from the sensors to the wall. Nota that the interrupts are not handled in these files, but in an interrupt handler file called interrupt_handlers.c and interrupt_handlers.h. This file also manages the interrupt used for the button.
+- **Types of movement:** located in movement_directions.c and movement_directions.h, used to define the duty cycles of every type of movement. These are:
+1. a
+2. b
 
 # Algorithm:
 Located in MAIN.c, the algorithm in pseodocode does the following:
