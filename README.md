@@ -18,8 +18,11 @@ The code, as suggested by the TAs, has been divided in accordingly divided in Ha
 - **PWM**: located in pwm_hal.c and pwm_hal.h, used to continously regulate the power given to the motors, i.e. speed.
 - **Ultrasonic sensors**: located in ultrasonic_hal.c and ultrasonic_hal.h, used to capture the distance from the sensors to the wall. Nota that the interrupts are not handled in these files, but in an interrupt handler file called interrupt_handlers.c and interrupt_handlers.h. This file also manages the interrupt used for the button.
 - **Types of movement:** located in movement_directions.c and movement_directions.h, used to define the duty cycles of every type of movement. These are:
-1. a
-2. b
+1. STRAIGHT.
+2. LEFT.
+3. RIGHT.
+4. STRAIGHT_LEFT.
+5. STRAIGHT_RIGHT.
 
 # Algorithm:
 Located in MAIN.c, the algorithm in pseodocode does the following:
@@ -50,5 +53,5 @@ Located in MAIN.c, the algorithm in pseodocode does the following:
 
 **Observations:** In the algorithm, we have several mechanisms that help the car drive smooth and turn the appropriate degrees when necessary. First, we are filtering captured values from the sensors to make the reception more accurate. Also, when turning right, we are setting a mechanism that allows us to not stop turning until the desired degrees have been turned.
 
-
+**References:** Part of this project contains pieces of code from https://github.com/Aghosh993/EL6483_EmbeddedSystems. Specially, the HAL of the PWM, button and LEDs.
 
