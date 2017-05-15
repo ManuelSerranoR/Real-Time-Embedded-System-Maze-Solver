@@ -22,6 +22,8 @@ The code, as suggested by the TAs, has been divided in accordingly divided in Ha
 Located in MAIN.c, the algorithm in pseodocode does the following:
 
 1. Infinite loop
-...Get distances for sensors
-...IF front sensor distance >= front low threshold THEN
+
+----Get distances for sensors
+
+----IF front sensor distance >= front low threshold THEN
   
