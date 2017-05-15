@@ -17,16 +17,14 @@
 
 
 #define front_low_threshold 12
-#define left_low_threshold  12
-#define right_low_threshold 12
+#define left_low_threshold  9
+#define right_low_threshold 9
 
-#define front_high_threshold 16
-#define left_high_threshold  20
-#define right_high_threshold 20
+#define front_high_threshold 35
+#define left_high_threshold  11.5
+#define right_high_threshold 11.5
 
-#define  tooclose 5
-
-#define DUTY 0.4f
+#define DUTY 0.5f
 
 int main()
 {
@@ -42,7 +40,7 @@ int main()
 
   board_led_init();
 
-  int distance_right,distance_front,distance_left;
+  int distance_right, distance_front, distance_left;
 
   printf("Hello World!!\r\n");
 
@@ -68,36 +66,40 @@ int main()
   1   1   0     Take a left
   1   1   1     Go straight
   */
-  
+  int flag_turn = 0;
+  int flag_begin = 1;
+  int flag_filter=0;
+
   while(1)
   {
     distance_right=ultrasonic_distance(ultrasonic_right);
     distance_front=ultrasonic_distance(ultrasonic_front);
     distance_left=ultrasonic_distance(ultrasonic_left);
-    
-    if(distance_front>=front_high_threshold)
-    {
-      if(distance_left<left_low_threshold && distance_right>right_high_threshold)
-        move(STRAIGHT_RIGHT, DUTY);
-      else if(distance_left>left_low_threshold && distance_left<left_high_threshold && distance_right>right_high_threshold)
-        move(STRAIGHT_STRAIGHT_LEFT, DUTY);
-      else if(distance_left>left_high_threshold && distance_right>right_high_threshold)
-        move(STRAIGHT_STRAIGHT_LEFT,DUTY);
-      else
-        move(STRAIGHT,DUTY);
-      // For hitting the wall
-      if(distance_right<tooclose)
-        move(STRAIGHT_STRAIGHT_LEFT, DUTY);
-      if(distance_left<tooclose)
-        move(STRAIGHT_Right, DUTY);
-      
-    }
 
-    else
-    {
+    if(distance_front>=front_low_threshold && flag_turn == 0)
+      {
+        flag_filter=0;
+        
+        if(distance_left<left_low_threshold && distance_right>right_high_threshold)
+          move(STRAIGHT_RIGHT, DUTY);
+        else if(distance_left>left_high_threshold)
+          move(STRAIGHT_LEFT,DUTY);
+        else
+          move(STRAIGHT,DUTY);
+      }
+
+    else if((distance_front<front_low_threshold || flag_turn == 1) && flag_filter==1)
+      {
+        flag_filter=0;    
+        flag_turn = 1;
         move(RIGHT, DUTY);
-        int z;
-        for(z=0;z<180000;++z);
+        if(distance_front >= front_high_threshold)    
+          flag_turn = 0;
+      }
+
+    else if((distance_front<front_low_threshold || flag_turn == 1) && flag_filter==0)
+    {
+      flag_filter=1;
     }
   }
 
