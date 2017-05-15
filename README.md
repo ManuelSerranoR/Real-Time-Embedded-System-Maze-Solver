@@ -39,4 +39,13 @@ Located in MAIN.c, the algorithm in pseodocode does the following:
 
 ------------move straight
 
+----ELSE IF front sensor distance < front low threshold THEN
+
+------------move right
+
 ----END IF
+
+**Observations:** In the algorithm, we have several mechanisms that help the car drive smooth and turn the appropriate degrees when necessary. First, we are filtering captured values from the sensors to make the reception more accurate. Also, when turning right, we are setting a mechanism that allows us to not stop turning until the desired degrees have been turned.
+
+
+
