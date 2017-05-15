@@ -7,7 +7,7 @@ Task Accomplished:
 
 - [x] Drivers for PWM for commanding the motors (Completed by **Manuel Serrano**)
 - [x] Drivers for reading the ultrasonic sensor (Completed by **Naman Patel**)
-- [x] Drivers for reading the encoders (Completed by **Siddharth Arora**)
+- [x] Drivers for reading the encoders (Completed by **Siddharth Arora, Anusha Sharma**)
 - [x] Integration of all drivers (Completed by **Naman Patel**)
 - [x] Wall Following Algorithm with bang bang controller(Completed by **Manuel Serrano, Naman Patel and Siddharth Arora**)
 
