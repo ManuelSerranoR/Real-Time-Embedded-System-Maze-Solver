@@ -26,4 +26,17 @@ Located in MAIN.c, the algorithm in pseodocode does the following:
 ----Get distances for sensors
 
 ----IF front sensor distance >= front low threshold THEN
+
+--------IF left sensor distance < left low threshold AND right sensor distance > right high threshold THEN
   
+------------move straight_right
+
+--------ELSE IF left sensor distance < left high threshold THEN
+
+------------move straight_left
+
+--------ELSE
+
+------------move straight
+
+----END IF
