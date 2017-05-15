@@ -1,9 +1,9 @@
 # Real-Time-Embedded-System-Maze-Solver
 This repository contains files written in C for the development of a maze solver car robot at New York University Tandon School of Engineering, using the interface board Release 0.1.
 
-Group Members: 
+Group Members: **Manuel Serrano**, **Michael Shamouilian**,**Naman Patel**,**Siddharth Arora**,**Anusha**
 
-Task Accomplished:**Manuel Serrano**, **Michael Shamouilian**,**Naman Patel**,**Siddharth Arora**,**Anusha**
+Task Accomplished:
 
 - [x] Drivers for PWM for commanding the motors (Completed by **Manuel Serrano**)
 - [x] Drivers for reading the ultrasonic sensor (Completed by **Naman Patel**)
