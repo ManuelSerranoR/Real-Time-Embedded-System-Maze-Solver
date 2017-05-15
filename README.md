@@ -55,9 +55,9 @@ Located in MAIN.c, the algorithm in pseodocode does the following:
 
 **Observations:** In the algorithm, we have several mechanisms that help the car drive smooth and turn the appropriate degrees when necessary. First, we are filtering captured values from the sensors to make the reception more accurate. Also, when turning right, we are setting a mechanism that allows us to not stop turning until the desired degrees have been turned.
 
-**Trial Runs ** The following are the links showcasing the trial runs.
-            --
-            --
+**YouTube videos:** The following are the links showcasing the trial runs:
+1. https://youtu.be/GP3gEITnyiU
+2. https://youtu.be/I_ei28f7XuQ
 
 **References:** Part of this project contains pieces of code from https://github.com/Aghosh993/EL6483_EmbeddedSystems. Specially, the HAL of the PWM, button and LEDs.
 
